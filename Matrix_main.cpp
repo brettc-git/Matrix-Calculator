@@ -7,6 +7,7 @@ using std::endl;
 const int DEFAULT_M = 3;
 const int DEFAULT_N = 3;
 
+// Work in Progress
 template <typename T>
 T** Matrix_Creator(int size);
 
@@ -83,12 +84,14 @@ int main() {
 
 }
 
+// Work in Progress
 template <typename T>
 T** Matrix_Creator(int size) { // Used for dynamically allocating space for matrices
 	T** newMat = new T * [size];
 	for (int i = 0; i < DEFAULT_M; i++) {
 		newMat[i] = new T[DEFAULT_N];
 	}
+	return newMat;
 }
 
 template <typename T>
@@ -115,10 +118,7 @@ void printMat(T** arr)
 template <typename T>
 T** transpose(T** arr) {
 
-	T** transposed = new T * [DEFAULT_M];
-	for (int i = 0; i < DEFAULT_M; i++) {
-		transposed[i] = new T[DEFAULT_N];
-	}
+	T** transposed = Matrix_Creator(DEFAULT_M);
 
 	for (int i = 0; i < DEFAULT_M; i++) {
 		for (int j = 0; j < DEFAULT_M; j++) {
@@ -132,10 +132,7 @@ T** transpose(T** arr) {
 template <typename T>
 T** minor(T** arr, int m, int n)
 {
-	T** minor_mat = new T * [DEFAULT_M - 1];
-	for (int i = 0; i < DEFAULT_M - 1; i++) {
-		minor_mat[i] = new T[DEFAULT_N - 1];
-	}
+	T** minor_mat = Matrix_Creator(DEFAULT_M-1);
 
 	if ((m == 0 || m == 2) && (n == 0 || n == 2)) { // Covers [0][0], [0][2], [2][0], [2][2]
 		minor_mat[0][0] = arr[(m + 1) % 3][(n + 1) % 3];
@@ -205,10 +202,7 @@ template <typename T>
 T** cofactor_matrix(T** arr) {
 
 	// Creating the cofactor matrix
-	T** cofactor_mat = new T * [DEFAULT_M];
-	for (int i = 0; i < DEFAULT_M; i++) {
-		cofactor_mat[i] = new T[DEFAULT_N];
-	}
+	T** cofactor_mat = Matrix_Creator(DEFAULT_M);
 
 	for (int i = 0; i < DEFAULT_N; i++) {
 		for (int j = 0; j < DEFAULT_M; j++)
@@ -241,9 +235,7 @@ T** inverse(T** arr) {
 	}
 
 	else {
-		T** inverse = new T * [DEFAULT_M];
-		for (int i = 0; i < DEFAULT_M; i++)
-			inverse[i] = new T[DEFAULT_N];
+		T** inverse = Matrix_Creator(DEFAULT_M);
 
 		for (int i = 0; i < DEFAULT_N; i++) {
 			for (int j = 0; j < DEFAULT_M; j++) {
