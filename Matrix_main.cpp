@@ -40,6 +40,8 @@ T** adjoint(T** arr);
 template <typename T>
 T** inverse(T** arr);
 
+
+/*** Work in Progress ***/
 template <typename T>
 T** rowEchelon(T** arr);
 
@@ -252,6 +254,7 @@ T** inverse(T** arr) {
 	}
 }
 
+/*** Work in Progress ***/
 template <typename T>
 T** rowEchelon(T** arr) {}
 
